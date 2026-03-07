@@ -62,16 +62,14 @@ let senData = async (data) => {
 
         // LÓGICA DE PERSISTENCIA: Solo guardo si NO hubo error 401
         if (respuesta.ok) {
-            // Guardo el objeto completo (incluyendo usuario y contraseña para recordar)
-            // Agrego los datos del formulario al objeto de respuesta
-            const sessionData = { ...userLogin, ...data };
+            // Guardo los datos del servidor con el rol (id, rol, usuario)
+            localStorage.setItem("usuario", JSON.stringify(userLogin));
             
-            localStorage.setItem("usuarioSesion", JSON.stringify(sessionData));
+            console.log("Acceso exitoso. Sesión iniciada y guardada.");
+            alert("¡Bienvenido! Sesión iniciada.");
             
-            console.log("Acceso exitoso. Datos recordados para la próxima.");
-            alert("¡Bienvenido! Sesión iniciada y guardada.");
-            
-            // Aquí podrías redirigir al dashboard: window.location.href = "dashboard.html";
+            // Redirigir al dashboard (listado de productos)
+            window.location.href = "listado-pro.html";
         } else {
             // Si hay error 401, aviso al usuario y no guardo nada nuevo
             alert("Error: Credenciales no válidas.");

@@ -113,6 +113,12 @@
             rol: "admin" // Cambia a 'vendedor' para probar la restricción
         };
         localStorage.setItem("usuario", JSON.stringify(usuarioActual));
+    } else {
+        // Si viene del login, el servidor devuelve {id, rol, usuario}
+        // Convertimos 'usuario' a 'nombre' si no existe 'nombre'
+        if (!usuarioActual.nombre && usuarioActual.usuario) {
+            usuarioActual.nombre = usuarioActual.usuario;
+        }
     }
 
     // 3. ACTUALIZAR INTERFAZ (Badge de Rol)
