@@ -66,12 +66,19 @@ let senData = async (data) => {
             // Agrego los datos del formulario al objeto de respuesta
             const sessionData = { ...userLogin, ...data };
             
+            // almaceno en dos claves: la que ya existía y otra que se usa en el listado
             localStorage.setItem("usuarioSesion", JSON.stringify(sessionData));
+            // la vista de productos sólo mira el objeto bajo "usuario" y necesita nombre+rol
+            localStorage.setItem("usuario", JSON.stringify({
+                nombre: userLogin.usuario,
+                rol: userLogin.rol ? userLogin.rol.toLowerCase() : "vendedor"
+            }));
             
             console.log("Acceso exitoso. Datos recordados para la próxima.");
             alert("¡Bienvenido! Sesión iniciada y guardada.");
             
-            // Aquí podrías redirigir al dashboard: window.location.href = "dashboard.html";
+            // redirijo al dashboard (listado de productos de la app)
+            window.location.href = "listado-pro.html";
         } else {
             // Si hay error 401, aviso al usuario y no guardo nada nuevo
             alert("Error: Credenciales no válidas.");
