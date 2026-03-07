@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "BACKEND_TIENDA_NODE_MYSQL"
+		},
+		{
+			"path": "frontend-apicrud-20260306T003930Z-1-001"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "frontend-apicrud-20260306T003930Z-1-001"
+	}
+}

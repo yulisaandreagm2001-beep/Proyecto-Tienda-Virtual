@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title id="page-title">Admin - Producto</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-laugh-wink"></i></div>
+                <div class="sidebar-brand-text mx-3">Inventario</div>
+            </a>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-fw fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+            <hr class="sidebar-divider">
+            <li class="nav-item active">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseProductos">
+                    <i class="fas fa-fw fa-box"></i><span>Productos</span>
+                </a>
+                <div id="collapseProductos" class="collapse show">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="listado-pro.html">Ver Productos</a>
+                        <a class="collapse-item active" href="crear-pro.html">Crear/Editar</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <h1 class="h4 mb-0 text-gray-800 ml-4" id="main-heading">Nuevo Producto</h1>
+                </nav>
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
+                                    <form id="formProducto">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold text-primary">Producto</label>
+                                            <select id="productos-select" class="form-control">
+                                                <option selected disabled>Seleccionar un producto</option>
+                                                <option value="Hamburguesa">Hamburguesa</option>
+                                                <option value="Picada">Picada</option>
+                                                <option value="Pasta">Pasta</option>
+                                                <option value="Perro">Perro</option>
+                                                <option value="Sanchipapa">Sanchipapa</option>
+                                                <option value="Chuzo">Chuzo</option>
+                                                <option value="Pizza">Pizza</option>
+                                                <option value="Pollo">Pollo</option>
+                                                <option value="Tacos">Tacos</option>
+                                                <option value="Burrito">Burrito</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-weight-bold text-primary">Precio</label>
+                                            <input type="number" id="precio-pro" class="form-control" placeholder="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-weight-bold text-primary">Stock</label>
+                                            <input type="number" id="stock-pro" class="form-control" placeholder="Cantidad">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-weight-bold text-primary">Descripción</label>
+                                            <textarea class="form-control" id="desc-pro" rows="3" placeholder="Detalles..."></textarea>
+                                        </div>
+                                        <button type="button" id="btn-accion" class="btn btn-primary btn-block">
+                                            <i class="fas fa-save"></i> <span id="text-btn">Crear Producto</span>
+                                        </button>
+                                        <a href="listado-pro.html" class="btn btn-secondary btn-block">Cancelar</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 text-center">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3"><h6 class="m-0 font-weight-bold text-primary">Imagen</h6></div>
+                                <div class="card-body">
+                                    <img id="imagen-pro" src="https://via.placeholder.com/250" class="img-fluid rounded shadow" style="max-height: 300px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const API_URL = "http://localhost:3000/api/productos";
+
+        const imagenes = [
+            { name: "Hamburguesa", precio: 30000, url: "https://th.bing.com/th/id/R.c691ed37c9ce3040c3ebd2892e88870c?rik=QUBcFflN%2b9oqPQ&pid=ImgRaw&r=0" },
+            { name: "Pizza", precio: 45000, url: "https://www.ocu.org/-/media/ocu/images/home/alimentacion/alimentos/pizzas_selector_1600x900.jpg?rev=6a81e278-07fc-4e95-9ba1-361063f35adf&hash=B8B1264AB6FC3F4B1AE140EB390208CD" },
+            { name: "Pasta", precio: 25000, url: "https://cdn.shopify.com/s/files/1/2538/5286/products/Spaghetti-with-Meat-Sauce-Recipe-1-1200_787x787.jpg?v=1588772697" },
+            { name: "Perro", precio: 22000, url: "https://th.bing.com/th/id/OIP.2QjcuwsTimAImo8WSQdTdAHaFp?rs=1&pid=ImgDetMain" },
+            { name: "Burrito", precio: 25000, url: "https://th.bing.com/th/id/R.1a7d6f0af7be590eb4e27d96ce3530e5?rik=eiCcb%2f%2b9TYNzXQ&pid=ImgRaw&r=0" },
+            { name: "Tacos", precio: 26000, url: "https://th.bing.com/th/id/R.d50b293e5d2de51d349691db78f71f8c?rik=FfttXcgxjuqR%2fQ&pid=ImgRaw&r=0" },
+            { name: "Pollo", precio: 35000, url: "https://th.bing.com/th/id/OIP.IAza-1yPPvzA55qlI0VqvQHaF7?w=744&h=595&rs=1&pid=ImgDetMain" },
+            { name: "Chuzo", precio: 22000, url: "https://th.bing.com/th/id/R.c0d3de5bd13edcc5323d074e4ba8f864?rik=lFbTsZF0ESAN5w&pid=ImgRaw&r=0" },
+            { name: "Sanchipapa", precio: 20000, url: "https://cdn.colombia.com/gastronomia/2011/08/25/papas-chorreadas-1616.jpg" },
+            { name: "Picada", precio: 65000, url: "https://cdn.colombia.com/gastronomia/2016/06/21/picada-colombiana-2990.jpg" }
+        ];
+
+        const selectImagen = document.querySelector('#productos-select');
+        const imagenMostrada = document.querySelector('#imagen-pro');
+        const precioInput = document.querySelector("#precio-pro");
+        const stockInput = document.querySelector("#stock-pro");
+        const descInput = document.querySelector("#desc-pro");
+        const btnAccion = document.querySelector('#btn-accion');
+        const textBtn = document.querySelector('#text-btn');
+        const mainHeading = document.querySelector('#main-heading');
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const productoId = urlParams.get('id');
+
+        async function inicializar() {
+            if (productoId) {
+                mainHeading.textContent = "Editar Producto";
+                textBtn.textContent = "Actualizar Producto";
+                btnAccion.classList.replace('btn-primary', 'btn-success');
+                
+                try {
+                    // Nota: Aquí consultamos directamente al endpoint de tu servidor
+                    const res = await fetch(`${API_URL}/${productoId}`);
+                    if (!res.ok) throw new Error();
+                    const p = await res.json();
+                    
+                    selectImagen.value = p.nombre;
+                    precioInput.value = p.precio;
+                    stockInput.value = p.stock;
+                    descInput.value = p.descripcion;
+                    imagenMostrada.src = p.imagen;
+                } catch (e) { 
+                    alert("Error al cargar los datos del producto"); 
+                }
+            }
+        }
+
+        selectImagen.addEventListener('change', () => {
+            const sel = imagenes.find(i => i.name === selectImagen.value);
+            if (sel) {
+                imagenMostrada.src = sel.url;
+                if (!productoId) precioInput.value = sel.precio;
+            }
+        });
+
+        btnAccion.addEventListener('click', async () => {
+    // 1. CAPTURA: Aseguramos que el stock sea un número entero
+    const stockValue = parseInt(document.querySelector("#stock-pro").value);
+    
+    // 2. VALIDACIÓN: Si el usuario no escribió nada, ponemos 0 para que la DB no de error
+    if (isNaN(stockValue)) {
+        alert("⚠️ Por favor ingresa una cantidad en el stock");
+        return;
+    }
+
+    const data = {
+        nombre: document.querySelector('#productos-select').value,
+        precio: parseFloat(document.querySelector("#precio-pro").value) || 0,
+        stock: stockValue, // <--- Esto es lo que arregla el error de tu imagen
+        descripcion: document.querySelector("#desc-pro").value,
+        imagen: document.querySelector('#imagen-pro').src
+    };
+
+    // 3. ENVÍO: Detecta si es una creación nueva o una edición
+    const url = productoId ? `${API_URL}/${productoId}` : API_URL;
+    const metodo = productoId ? "PUT" : "POST";
+
+    try {
+        const res = await fetch(url, {
+            method: metodo,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+        if (res.ok) {
+            alert("✅ Guardado correctamente");
+            window.location.href = "listado-pro.html";
+        }
+    } catch (e) { 
+        alert("❌ Error de conexión"); 
+    }
+});
+
+        inicializar();
+    </script>
+</body>
+</html>
