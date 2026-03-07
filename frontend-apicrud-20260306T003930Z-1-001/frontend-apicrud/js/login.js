@@ -62,9 +62,8 @@ let senData = async (data) => {
 
         // LÓGICA DE PERSISTENCIA: Solo guardo si NO hubo error 401
         if (respuesta.ok) {
-            // Guardo el objeto completo (incluyendo usuario y contraseña para recordar)
-            // Agrego los datos del formulario al objeto de respuesta
-            const sessionData = { ...userLogin, ...data };
+            // Guardo los datos del servidor con el rol (id, rol, usuario)
+            localStorage.setItem("usuario", JSON.stringify(userLogin));
             
             // almaceno en dos claves: la que ya existía y otra que se usa en el listado
             localStorage.setItem("usuarioSesion", JSON.stringify(sessionData));
@@ -74,10 +73,11 @@ let senData = async (data) => {
                 rol: userLogin.rol ? userLogin.rol.toLowerCase() : "vendedor"
             }));
             
-            console.log("Acceso exitoso. Datos recordados para la próxima.");
-            alert("¡Bienvenido! Sesión iniciada y guardada.");
-            
             // redirijo al dashboard (listado de productos de la app)
+            console.log("Acceso exitoso. Sesión iniciada y guardada.");
+            alert("¡Bienvenido! Sesión iniciada.");
+            
+            // Redirigir al dashboard (listado de productos)
             window.location.href = "listado-pro.html";
         } else {
             // Si hay error 401, aviso al usuario y no guardo nada nuevo
