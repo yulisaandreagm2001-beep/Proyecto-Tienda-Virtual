@@ -5,26 +5,18 @@ Aplicación web full stack de tienda virtual con autenticación, roles de usuari
 ## ✨ Funcionalidades
 
 - Registro e inicio de sesión de usuarios
-- Control de acceso por roles ([admin / cliente])
-- CRUD de [productos / pedidos / usuarios]
+- Control de acceso por roles
+- CRUD de productos
 - Filtros de búsqueda
 - Redirección al dashboard según el rol
 - Restricciones por rol en acciones como eliminar
 
 ## 🧰 Tecnologías
 
-- **Backend:** Node.js · [Express]
+- **Backend:** Node.js
 - **Base de datos:** MySQL
-- **Frontend:** [React + Vite]
+- **Frontend:** JavaScript
 - **Control de versiones:** Git y GitHub
-
-## 📁 Estructura
-
-```
-Proyecto-Tienda-Virtual/
-├── BACKEND_TIENDA_NODE_MYSQL/   # API y lógica del servidor
-└── frontend/                    # Interfaz de usuario
-```
 
 ## 🚀 Cómo ejecutarlo
 
@@ -53,14 +45,14 @@ DB_NAME=nombre_de_la_base
 PORT=3000
 ```
 
-Crea la base de datos en MySQL [e importa el script .sql, si existe] y ejecuta:
+Crea la base de datos en MySQL y ejecuta:
 ```bash
 npm start
 ```
 
 ### 3. Frontend
 ```bash
-cd frontend
+cd frontend-apicrud-20260306T003930Z-1-001
 npm install
 npm run dev
 ```
@@ -70,7 +62,6 @@ npm run dev
 Proyecto desarrollado en equipo.
 
 - **Yulisa Andrea Gómez Montoya:** backend (API en Node.js, base de datos MySQL, autenticación, roles, CRUD y filtros).
-- **[Gloria Ossa]:** frontend.
 
 ## 📬 Contacto
 
