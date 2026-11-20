@@ -70,7 +70,7 @@ npm run dev
 Proyecto desarrollado en equipo.
 
 - **Yulisa Andrea Gómez Montoya:** backend (API en Node.js, base de datos MySQL, autenticación, roles, CRUD y filtros).
-- **[Nombre del compañero(a)]:** frontend.
+- **[Gloria Ossa]:** frontend.
 
 ## 📬 Contacto
 
